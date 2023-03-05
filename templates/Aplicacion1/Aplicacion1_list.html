@@ -1,0 +1,39 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<table class="table table-bordered">
+    <caption>Registros de actividades</caption>
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Nombre de la actividad</td>
+            <td>Sector encargado</td>
+            <td>Objetivo de la actividad</td>
+            <td>Monto disponible</td>
+            <td>Tiempo de ejecución</td>
+            <td>Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if Aplicaciones %}
+        {% for Aplicacion1 in Aplicaciones %}
+        <tr>
+            <td>{{ Aplicacion1.id }}</td>
+            <td>{{ Aplicacion1.nombre_de_actividad }}</td>
+            <td>{{ Aplicacion1.sector_asignado }}</td>
+            <td>{{ Aplicacion1.objetivo }}</td>
+            <td>{{ Aplicacion1.monto_planificado }}</td>
+            <td>{{ Aplicacion1.periodo }}</td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'Aplicacion1_editar' Aplicacion1.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'Aplicacion1_eliminar' Aplicacion1.id %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros de actividades</h1>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}
